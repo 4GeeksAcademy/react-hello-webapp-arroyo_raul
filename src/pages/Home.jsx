@@ -13,4 +13,4 @@ export const Home = () => {
 			<Section section="Planets" />
 		</div>
 	);
-}; 
+};

@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 export const Navbar = () => {
+
+	const {store, dispatch} = useGlobalReducer()
 
 	return (
 		<nav className="navbar navbar-light bg-light">
@@ -11,7 +14,7 @@ export const Navbar = () => {
 				<div className="ml-auto">
 					<div className="dropdown">
 						<a className="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-							Favorites <span className="badge bg-secondary">4</span>
+							Favorites <span className="badge bg-secondary">{store.favourites.length}</span>
 						</a>
 
 						<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
