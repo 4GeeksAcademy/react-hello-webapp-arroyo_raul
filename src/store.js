@@ -41,6 +41,22 @@ export default function storeReducer(store, action = {}) {
         ...store,
         favourites: favourites || []
       };
+
+    case 'add_favourite':
+      const { item } = action.payload;
+
+      return {
+        ...store,
+        favourites: [...store.favourites, item]
+      };
+    
+      case 'del_favourite':
+        const { uid } = action.payload;
+
+        return {
+          ...store,
+          favourites: store.favourites.filter(fav => fav.uid !== uid)
+        };
     
     default:
       throw Error('Unknown action.');

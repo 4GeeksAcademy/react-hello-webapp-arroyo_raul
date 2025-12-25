@@ -1,28 +1,44 @@
 import { useState } from "react";
+import useGlobalReducer from "../hooks/useGlobalReducer";
+import { Link } from "react-router-dom";
 
-export const Character = ({name}) => {
+export const Character = ({ name, uid }) => {
     const [favorito, setFavorito] = useState(false);
-    
+    const { store, dispatch } = useGlobalReducer();
+
+    const item = {
+        uid: uid,
+        name: name
+    };
+
     const añadirFavorito = () => {
         if (!favorito) {
             setFavorito(true);
+            dispatch({ type: 'add_favourite', payload: { item: item } })
         } else {
             setFavorito(false);
+            dispatch({ type: 'del_favourite', payload: { uid: uid } })
         }
     }
 
-    const corazon = favorito ? <i class="fa-solid fa-heart"></i> : <i class="fa-regular fa-heart"></i>;
+    const es_favorito = () => {
+        for (let i = 0; i < store.favourites.length; i++) {
+            if (store.favourites[i].uid === uid) {
+                return <i className="fa-solid fa-heart text-danger"></i>;
+            }
+        }
+        return <i className="fa-regular fa-heart text-warning"></i>;
+    }
 
     return (
         <div className="card" style={{ width: "300px" }}>
-            <img src="..." className="card-img-top" />
             <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <div className="d-flex justify-content-between">
-                    <a href="#" className="btn btn-outline-primary">Learn more!</a>
-                    <button type="button" onClick={añadirFavorito} className="btn btn-outline-warning">{corazon}</button>
+                <div className="d-flex justify-content-end">
+                    <span onClick={añadirFavorito}>{es_favorito()}</span>
                 </div>
+                <Link to={`/details/${uid}`} className="text-decoration-none text-dark">
+                    <h2 className="d-flex justify-content-center align-items-center p-3">{name}</h2>
+                </Link>
             </div>
         </div>
     );

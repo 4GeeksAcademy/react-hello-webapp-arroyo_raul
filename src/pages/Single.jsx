@@ -9,8 +9,7 @@ export const Single = props => {
   const { store } = useGlobalReducer()
 
   // Retrieve the 'theId' URL parameter using useParams hook.
-  const { theId } = useParams()
-  const singleTodo = store.todos.find(todo => todo.id === parseInt(theId));
+  const { uid } = useParams()
 
   return (
     <div className="text-center mt-5 container">
@@ -22,7 +21,7 @@ export const Single = props => {
           <img src="https://imagenes.hobbyconsolas.com/files/image_640_360/uploads/imagenes/2023/04/25/69010497f41bb.jpeg" className="img-fluid" />
         </div>
         <div className="text-center w-75">
-          <h2>Nombre</h2>
+          <h2>Nombre {uid}</h2>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam inventore commodi omnis fugiat iusto corrupti repellendus sint alias reprehenderit blanditiis magni at ullam deleniti consectetur, veniam exercitationem rem delectus! Facere!
             Eum officiis minima quod, molestiae asperiores corrupti minus quam at beatae expedita quisquam nostrum qui numquam similique. Inventore praesentium minima corporis aliquid quibusdam consectetur, voluptatem sunt mollitia nobis molestiae voluptatum.
             Unde amet, porro facere illo similique ratione soluta ex pariatur perspiciatis sint animi adipisci asperiores commodi in. Vero, praesentium minima laudantium atque, optio iste recusandae quibusdam aspernatur veritatis placeat adipisci.</p>

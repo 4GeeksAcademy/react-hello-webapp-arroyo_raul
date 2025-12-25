@@ -3,7 +3,13 @@ import useGlobalReducer from "../hooks/useGlobalReducer";
 
 export const Navbar = () => {
 
-	const {store, dispatch} = useGlobalReducer()
+	const { store, dispatch } = useGlobalReducer()
+
+	const lista_favoritos = () => {
+		return store.favourites.map(fav => {
+			return <li key={fav.uid} className="d-flex justify-content-between align-items-center"><a className="dropdown-item" href="#">{fav.name}</a><i onClick={() => {dispatch({ type: 'del_favourite', payload: { uid: fav.uid } })}} className="fa-solid fa-trash-can px-2 text-danger"></i></li>
+		})
+	}
 
 	return (
 		<nav className="navbar navbar-light bg-light">
@@ -13,14 +19,16 @@ export const Navbar = () => {
 				</Link>
 				<div className="ml-auto">
 					<div className="dropdown">
-						<a className="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-							Favorites <span className="badge bg-secondary">{store.favourites.length}</span>
+						<a className="btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+							Favorites
+							<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+								{store.favourites.length}
+								<span className="visually-hidden">unread messages</span>
+							</span>
 						</a>
 
 						<ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							<li><a className="dropdown-item" href="#">Action</a></li>
-							<li><a className="dropdown-item" href="#">Another action</a></li>
-							<li><a className="dropdown-item" href="#">Something else here</a></li>
+							{lista_favoritos()}
 						</ul>
 					</div>
 				</div>

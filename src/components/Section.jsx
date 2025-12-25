@@ -63,21 +63,20 @@ export const Section = ({ section }) => {
         if (section === "Characters") {
             if(store.characters.length === 0) return <p>Cargando...</p>;
             return store.characters.map((character) => {
-                return <Character name={character.name} />
+                return <Character key={character.uid} name={character.name} uid={character.uid} />
             });
         } else if (section === "Vehicles") {
             if(store.vehicles.length === 0) return <p>Cargando...</p>;
             return store.vehicles.map((vehicle) => {
-                return <Character name={vehicle.name} />
+                return <Character key={vehicle.uid} name={vehicle.name} uid={vehicle.uid} />
             });
         } else if (section === "Planets") {
             if(store.planets.length === 0) return <p>Cargando...</p>;
             return store.planets.map((planet) => {
-                return <Character name={planet.name} />
+                return <Character key={planet.uid} name={planet.name} uid={planet.uid} />
             });
         }
     }
-
 
     return (
         <div className="section-container">
