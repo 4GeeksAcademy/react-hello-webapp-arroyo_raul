@@ -2,13 +2,14 @@ import { useState } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import { Link } from "react-router-dom";
 
-export const Character = ({ name, uid }) => {
+export const Character = ({ name, uid, type }) => {
     const [favorito, setFavorito] = useState(false);
     const { store, dispatch } = useGlobalReducer();
 
     const item = {
         uid: uid,
-        name: name
+        name: name,
+        type: type
     };
 
     const añadirFavorito = () => {
@@ -23,7 +24,7 @@ export const Character = ({ name, uid }) => {
 
     const es_favorito = () => {
         for (let i = 0; i < store.favourites.length; i++) {
-            if (store.favourites[i].uid === uid) {
+            if (store.favourites[i].uid === uid && store.favourites[i].type === type) {
                 return <i className="fa-solid fa-heart text-danger"></i>;
             }
         }
@@ -36,7 +37,7 @@ export const Character = ({ name, uid }) => {
                 <div className="d-flex justify-content-end">
                     <span onClick={añadirFavorito}>{es_favorito()}</span>
                 </div>
-                <Link to={`/details/${uid}`} className="text-decoration-none text-dark">
+                <Link to={`/details/${type}/${uid}`} className="text-decoration-none text-dark">
                     <h2 className="d-flex justify-content-center align-items-center p-3">{name}</h2>
                 </Link>
             </div>

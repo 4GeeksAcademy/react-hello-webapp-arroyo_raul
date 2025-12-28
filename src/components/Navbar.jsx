@@ -7,7 +7,7 @@ export const Navbar = () => {
 
 	const lista_favoritos = () => {
 		return store.favourites.map(fav => {
-			return <li key={fav.uid} className="d-flex justify-content-between align-items-center"><a className="dropdown-item" href="#">{fav.name}</a><i onClick={() => {dispatch({ type: 'del_favourite', payload: { uid: fav.uid } })}} className="fa-solid fa-trash-can px-2 text-danger"></i></li>
+			return <li key={fav.uid} className="d-flex justify-content-between align-items-center"><a className="dropdown-item" href="#">{fav.name}</a><i onClick={() => {dispatch({ type: 'del_favourite', payload: { uid: fav.uid, type: fav.type } })}} className="fa-solid fa-trash-can px-2 text-danger"></i></li>
 		})
 	}
 

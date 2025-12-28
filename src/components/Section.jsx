@@ -63,17 +63,17 @@ export const Section = ({ section }) => {
         if (section === "Characters") {
             if(store.characters.length === 0) return <p>Cargando...</p>;
             return store.characters.map((character) => {
-                return <Character key={character.uid} name={character.name} uid={character.uid} />
+                return <Character key={character.uid} name={character.name} uid={character.uid} type="people" />
             });
         } else if (section === "Vehicles") {
             if(store.vehicles.length === 0) return <p>Cargando...</p>;
             return store.vehicles.map((vehicle) => {
-                return <Character key={vehicle.uid} name={vehicle.name} uid={vehicle.uid} />
+                return <Character key={vehicle.uid} name={vehicle.name} uid={vehicle.uid} type="vehicles" />
             });
         } else if (section === "Planets") {
             if(store.planets.length === 0) return <p>Cargando...</p>;
             return store.planets.map((planet) => {
-                return <Character key={planet.uid} name={planet.name} uid={planet.uid} />
+                return <Character key={planet.uid} name={planet.name} uid={planet.uid} type="planets" />
             });
         }
     }
